@@ -1,0 +1,6 @@
+{
+    "applicationName": "example",
+     "logLevel": "INFO",
+     "chattyLevel": "INFO",
+     "overwriteMechanism":"APPEND"
+}
