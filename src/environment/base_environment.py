@@ -66,6 +66,14 @@ class BaseEnvironment(ABC):
         """
 
     @abstractmethod
+    def get_tickers_change(self) -> dict:
+        """
+        Returns a dictionary with the change in price for each ticker from the previous day to the current day
+        
+        :return: Dictionary with ticker symbols as keys and their price change as values
+        """
+
+    @abstractmethod
     def get_tickers(self) -> list:
         """
         Returns a list of all tickers in the dataset
@@ -111,4 +119,17 @@ class BaseEnvironment(ABC):
         Returns the total number of days in the dataset
         
         :return: Total number of days in the dataset
+        """
+
+    @abstractmethod
+    def reset_environment(self) -> None:
+        """
+        Resets the environment to the initial state
+        """
+    @abstractmethod
+    def to_json(self) -> dict:
+        """
+        Returns a JSON representation of the environment
+        
+        :return: JSON representation of the environment
         """

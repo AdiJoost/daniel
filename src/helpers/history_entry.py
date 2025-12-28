@@ -21,7 +21,8 @@ class HistoryEntry():
         alpha (float): The alpha value representing performance relative to the S&P 500.
     """
 
-    def __init__(self, day: date,  portfolio_value_at_start: float, cash_at_start: float, sAndPPerformance: float, portfolio_value_at_end: float = 0.0, cash_at_end: float = 0.0, actions_taken: "List[ActionTaken]"= []) -> None:
+    def __init__(self, day: date,  portfolio_value_at_start: float, cash_at_start: float, sAndPPerformance: float, portfolio_value_at_end: float = 0.0, cash_at_end: float = 0.0,
+                 state: str = "", actions_taken: "List[ActionTaken]"= []) -> None:
         self.day = day
         self.actions_taken: "List[ActionTaken]" = actions_taken
         self.portfolio_value_at_start = portfolio_value_at_start
@@ -30,6 +31,7 @@ class HistoryEntry():
         self.cash_at_end = cash_at_end
         self.sAndPPerformance = sAndPPerformance
         self.alpha = None
+        self.state = state
         self.total_gain = None
 
     def add_action_taken(self, action_taken: ActionTaken) -> None:
@@ -40,6 +42,9 @@ class HistoryEntry():
 
     def set_portfolio_value_at_end(self, portfolio_value_at_end: float) -> None:
         self.portfolio_value_at_end = portfolio_value_at_end
+    
+    def set_state(self, state: str) -> None:
+        self.state = state
 
     def calculate_alpha(self) -> float:
         """
@@ -90,9 +95,10 @@ class HistoryEntry():
             "sAndPPerformance": self.sAndPPerformance,
             "total_gain": self.total_gain,
             "alpha": self.alpha,
+            "state": self.state,
             "actions_taken": [action.to_json() for action in self.actions_taken]
         }
     
     def __repr__(self) -> str:
         actions = '\n'.join([repr(action) for action in self.actions_taken])
-        return f"---HistoryEntry {self.day}---\n\nportfolio_value_at_start={self.portfolio_value_at_start}\ncash_at_start={self.cash_at_start}\nportfolio_value_at_end={self.portfolio_value_at_end}\ncash_at_end={self.cash_at_end}\nperformance={self.caluclate_total_gain()}\nsAndPPerformance={self.sAndPPerformance}\nalpha={self.alpha}\n\n-Actions-\n\n{actions}\n\n"
+        return f"---HistoryEntry {self.day}---\n\nstate={self.state}\nportfolio_value_at_start={self.portfolio_value_at_start}\ncash_at_start={self.cash_at_start}\nportfolio_value_at_end={self.portfolio_value_at_end}\ncash_at_end={self.cash_at_end}\nperformance={self.caluclate_total_gain()}\nsAndPPerformance={self.sAndPPerformance}\nalpha={self.alpha}\n\n-Actions-\n\n{actions}\n\n"

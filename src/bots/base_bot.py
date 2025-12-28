@@ -54,12 +54,9 @@ class BaseBot(ABC):
         """
 
     @abstractmethod
-    def save(self, saving_path: str) -> None:
+    def save(self) -> None:
         """
         Saves the bot's state to the specified path.
-
-        :param saving_path: The path to save the bot's state.
-        :type saving_path: str
         """
 
     @abstractmethod
@@ -78,4 +75,10 @@ class BaseBot(ABC):
 
         :param saving_path: The path to load the bot's state.
         :type saving_path: str
+        """
+
+    @abstractmethod
+    def reset(self) -> None:
+        """
+        Resets the bot to its initial state.
         """
