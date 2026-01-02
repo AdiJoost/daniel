@@ -1,0 +1,5 @@
+{
+    "datastring": "data/yfinance/tickers_2015-01-01_to_2019-12-31_tidy.csv",
+    "performance_ticker": "^GSPC",
+    "PAYOUT_FEE": 0.0
+}
